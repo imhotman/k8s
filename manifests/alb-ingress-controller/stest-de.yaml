@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techit-mysql
+  labels:
+    app: techit-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techit-mysql
+  template:
+    metadata:
+      labels:
+        app: techit-mysql
+    spec:
+      containers:
+      - name: techit-mysql
+        image: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "1234"
+        ports:
+        - containerPort: 3306

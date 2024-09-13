@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftest
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ftest
+  template:
+    metadata:
+      labels:
+        app: ftest
+    spec:
+      containers:
+        - name: ftest
+          image: nginx:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

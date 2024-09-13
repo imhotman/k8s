@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftest
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ftest
+  template:
+    metadata:
+      labels:
+        app: ftest
+    spec:
+      containers:
+        - name: ftest
+          image: blushc/techit-bank-client
+          imagePullPolicy: Always
+          env:
+          - name: PROXY_HOST
+            value: "techit-server"
+          - name: PROXY_PORT
+            value: "8080"
+          ports:
+          - containerPort: 8081 

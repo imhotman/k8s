@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftest
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/"
+spec:
+  selector:
+    app: ftest
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081
